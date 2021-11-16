@@ -81,12 +81,23 @@ class MainAppViewModel: ObservableObject {
     func addDownloadPerson(){
      //downloadPerson()
         
-        repository.downloadPerson()
-        
-        repository.array.forEach { (DecodedPerson) in
-            provider.addPerson(DecodedPerson.getPerson())
-            self.updateList()
+    
+        repository.downloadPerson { [unowned self] value in
+            if value {
+                repository.array.forEach { (DecodedPerson) in
+                    provider.people.append(DecodedPerson.getPerson())
+                }
+                self.updateList()
+                self.alertType = .succesful
+                self.alertMessage = true
+            } else {
+                self.alertType = .failedRegister
+                self.alertMessage = true
+            }
         }
+        
+
+        
     }
     
     deinit {

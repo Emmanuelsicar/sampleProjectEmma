@@ -36,7 +36,8 @@ struct MainAppView: View {
                             }
                             
                             Button {
-                                viewModel.downloadPerson()
+                               // viewModel.downloadPerson()
+                                viewModel.addDownloadPerson()
                             } label: {
                                 HStack {
                                     Text("\(pType.rawValue)")

@@ -71,6 +71,12 @@ struct PeopleFormView_Previews: PreviewProvider {
     static var view: PeopleFormViewModel = .init(.principal)
     
     static var previews: some View {
-        PeopleFormView(viewModel: view)
+        Group {
+            PeopleFormView(viewModel: view)
+                .previewDevice("iPad Air (4th generation)")
+            PeopleFormView(viewModel: view)
+                .previewDevice("iPhone 11")
+            PeopleFormView(viewModel: view)
+        }
     }
 }
