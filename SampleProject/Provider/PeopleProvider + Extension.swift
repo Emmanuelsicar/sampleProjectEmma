@@ -11,7 +11,7 @@ import Combine
 extension PeopleProvider {
     
     func addPerson(_ person: Person) -> AnyPublisher<String, Error> {
-        //var sendHttp: String
+       
         var resultPublisher: AnyPublisher<String, Error>
         
         let numeroAleatorio = Int.random(in: 1..<15)
@@ -127,42 +127,5 @@ extension PeopleProvider {
         }
         return arrayPeople
     }
-    
-//    func downloadPerson() {
-//        guard let url = URL(string: "https://urlrequest.000webhostapp.com/people.json") else {return}
-//        URLSession.shared
-//            .dataTaskPublisher(for: url)
-//            .tryMap{ element -> Data in
-//                guard let httpResponse = element.response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
-//                    throw URLError(.badServerResponse)
-//                }
-//                return element.data
-//            }
-//            .decode(type: [DecodedPerson].self, decoder: JSONDecoder())
-//            .receive(on: RunLoop.main)
-//            .sink(receiveCompletion: {
-//                print("Received completion: \($0) ")
-//                switch $0{
-//                case .failure(let error):
-//                    print(error)
-////                    self.message = error.localizedDescription
-////                    self.alertType = .failedRegister
-////                    self.alertMessage = true
-//                    break
-//                case .finished:
-////                    self.alertType = .succesful
-////                    self.alertMessage = true
-////                    self.updateList()
-//                    break
-//                }
-//            }, receiveValue: { (decodedPerson) in
-//                decodedPerson.forEach{
-//                    print($0)
-//                    self.people.append($0.getPerson())
-//                }
-//
-//            })
-//            .store(in: &cancelables)
-//    }
     
 }

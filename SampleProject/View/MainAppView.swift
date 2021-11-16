@@ -36,7 +36,6 @@ struct MainAppView: View {
                             }
                             
                             Button {
-                               // viewModel.downloadPerson()
                                 viewModel.addDownloadPerson()
                             } label: {
                                 HStack {

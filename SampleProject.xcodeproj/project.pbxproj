@@ -21,8 +21,6 @@
 		0A86F8FC271F7120009F81C0 /* Principal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86F8FB271F7120009F81C0 /* Principal.swift */; };
 		0AACA1EA27304AEC00484A0D /* PeopleProvider + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7D26C7271E11FC00044422 /* PeopleProvider + Extension.swift */; };
 		0AB46B16273D9BE80050AD9C /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB46B15273D9BE80050AD9C /* Repository.swift */; };
-		0AB46B1B273DAB1A0050AD9C /* Model1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AB46B19273DAB1A0050AD9C /* Model1.xcdatamodeld */; };
-		0AB46B1E273DAB4F0050AD9C /* FileMetal.metal in Sources */ = {isa = PBXBuildFile; fileRef = 0AB46B1D273DAB4F0050AD9C /* FileMetal.metal */; };
 		0AD50A0C27299ED1006A085E /* PeopleFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD50A0B27299ED1006A085E /* PeopleFormView.swift */; };
 		0AFD29E02732079E001CA91C /* EditPeopleFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD29DF2732079E001CA91C /* EditPeopleFormView.swift */; };
 		1B7D26A4271DBCB100044422 /* SampleProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7D26A3271DBCB100044422 /* SampleProjectApp.swift */; };
@@ -54,9 +52,6 @@
 		0A86F8F8271F70F6009F81C0 /* Parent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
 		0A86F8FB271F7120009F81C0 /* Principal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Principal.swift; sourceTree = "<group>"; };
 		0AB46B15273D9BE80050AD9C /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		0AB46B1A273DAB1A0050AD9C /* Model1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model1.xcdatamodel; sourceTree = "<group>"; };
-		0AB46B1D273DAB4F0050AD9C /* FileMetal.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = FileMetal.metal; sourceTree = "<group>"; };
-		0AB46B20273DAB7C0050AD9C /* pruebaC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pruebaC.h; sourceTree = "<group>"; };
 		0AD50A0B27299ED1006A085E /* PeopleFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleFormView.swift; sourceTree = "<group>"; };
 		0AFD29D92731C08F001CA91C /* RecycleCode.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RecycleCode.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0AFD29DF2732079E001CA91C /* EditPeopleFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPeopleFormView.swift; sourceTree = "<group>"; };
@@ -111,9 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				0AFD29D92731C08F001CA91C /* RecycleCode.playground */,
-				0AB46B19273DAB1A0050AD9C /* Model1.xcdatamodeld */,
-				0AB46B1D273DAB4F0050AD9C /* FileMetal.metal */,
-				0AB46B20273DAB7C0050AD9C /* pruebaC.h */,
 			);
 			path = Dump;
 			sourceTree = "<group>";
@@ -311,7 +303,6 @@
 				1B7D26C5271DF7F800044422 /* OrderFactor.swift in Sources */,
 				1B7D26B9271DBF2B00044422 /* PersonType.swift in Sources */,
 				0A13056B273464D800EEA4C1 /* EditPeopleFormViewModel.swift in Sources */,
-				0AB46B1E273DAB4F0050AD9C /* FileMetal.metal in Sources */,
 				0A23732B2735AE7200A17608 /* DecodedPerson.swift in Sources */,
 				1B7D26C1271DF16500044422 /* RegularPerson.swift in Sources */,
 				1B7D26BB271DC45F00044422 /* MainAppViewModel.swift in Sources */,
@@ -323,7 +314,6 @@
 				0A13056527345D2A00EEA4C1 /* Peludo.swift in Sources */,
 				1B7D26B7271DBD9F00044422 /* GenderEnum.swift in Sources */,
 				0A86F8F9271F70F6009F81C0 /* Parent.swift in Sources */,
-				0AB46B1B273DAB1A0050AD9C /* Model1.xcdatamodeld in Sources */,
 				0A8129152723202800524FBE /* Errores.swift in Sources */,
 				0AB46B16273D9BE80050AD9C /* Repository.swift in Sources */,
 			);
@@ -533,19 +523,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		0AB46B19273DAB1A0050AD9C /* Model1.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0AB46B1A273DAB1A0050AD9C /* Model1.xcdatamodel */,
-			);
-			currentVersion = 0AB46B1A273DAB1A0050AD9C /* Model1.xcdatamodel */;
-			path = Model1.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 1B7D2698271DBCB100044422 /* Project object */;
 }

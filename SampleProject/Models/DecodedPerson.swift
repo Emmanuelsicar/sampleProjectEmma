@@ -15,8 +15,42 @@ struct DecodedPerson: Codable {
     let gender: String
     let pType: String
     
-    
     func getPerson() -> Person {
-        return RegularPerson(name: name, age: age, gender: .other(gender))
+        var person: Person
+    
+        switch pType {
+        case PersonType.averageJoe.rawValue:
+            person = RegularPerson(name: name, age: age, gender: .other(gender))
+            if let opcional = UUID.init(uuidString: self.id){
+                person.id = opcional
+            }
+            return person
+        case PersonType.parent.rawValue:
+            person = Parent(name: name, age: age, gender: .other(gender))
+            if let opcional = UUID.init(uuidString: self.id){
+                person.id = opcional
+            }
+            return person
+        case PersonType.student.rawValue:
+            person = Student(name: name, age: age, gender: .other(gender))
+            if let opcional = UUID.init(uuidString: self.id){
+                person.id = opcional
+            }
+            return person
+        case PersonType.teacher.rawValue:
+            person = Teacher(name: name, age: age, gender: .other(gender))
+            if let opcional = UUID.init(uuidString: self.id){
+                person.id = opcional
+            }
+            return person
+        case PersonType.principal.rawValue:
+            person = Principal(name: name, age: age, gender: .other(gender))
+            if let opcional = UUID.init(uuidString: self.id){
+                person.id = opcional
+            }
+            return person
+        default:
+            return RegularPerson(name: name, age: age, gender: .other(gender))
+        }
     }
 }

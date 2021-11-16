@@ -8,8 +8,6 @@
 import Foundation
 
 struct UserApp: Codable {
-    
     let user: String
     let pass: String
-    
 }

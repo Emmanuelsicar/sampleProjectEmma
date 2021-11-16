@@ -79,24 +79,19 @@ class MainAppViewModel: ObservableObject {
     }
     
     func addDownloadPerson(){
-     //downloadPerson()
-        
-    
-        repository.downloadPerson { [unowned self] value in
-            if value {
-                repository.array.forEach { (DecodedPerson) in
-                    provider.people.append(DecodedPerson.getPerson())
+        repository.downloadPerson { [unowned self](value1, value2) in
+            if value1{
+                value2.forEach { (DecodedPerson) in
+                    self.provider.people.append(DecodedPerson.getPerson())
                 }
-                self.updateList()
-                self.alertType = .succesful
-                self.alertMessage = true
-            } else {
-                self.alertType = .failedRegister
-                self.alertMessage = true
             }
+            self.alertType = .succesful
+            self.alertMessage = true
+            self.updateList()
+        } onFail: {
+            self.alertType = .failedRegister
+            self.alertMessage = true
         }
-        
-
         
     }
     
