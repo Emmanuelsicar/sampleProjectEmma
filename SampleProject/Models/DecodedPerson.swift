@@ -19,31 +19,31 @@ struct DecodedPerson: Codable {
         var person: Person
     
         switch pType {
-        case PersonType.averageJoe.rawValue:
+        case PersonType.averageJoe.rawValue, "AverageJoe":
             person = RegularPerson(name: name, age: age, gender: .other(gender))
             if let opcional = UUID.init(uuidString: self.id){
                 person.id = opcional
             }
             return person
-        case PersonType.parent.rawValue:
+        case PersonType.parent.rawValue, "Parent":
             person = Parent(name: name, age: age, gender: .other(gender))
             if let opcional = UUID.init(uuidString: self.id){
                 person.id = opcional
             }
             return person
-        case PersonType.student.rawValue:
+        case PersonType.student.rawValue, "Student":
             person = Student(name: name, age: age, gender: .other(gender))
             if let opcional = UUID.init(uuidString: self.id){
                 person.id = opcional
             }
             return person
-        case PersonType.teacher.rawValue:
+        case PersonType.teacher.rawValue, "Teacher":
             person = Teacher(name: name, age: age, gender: .other(gender))
             if let opcional = UUID.init(uuidString: self.id){
                 person.id = opcional
             }
             return person
-        case PersonType.principal.rawValue:
+        case PersonType.principal.rawValue, "Principal":
             person = Principal(name: name, age: age, gender: .other(gender))
             if let opcional = UUID.init(uuidString: self.id){
                 person.id = opcional

@@ -8,7 +8,7 @@
 import Foundation
 
 enum Gender: CaseIterable, Hashable{
-    static var allCases: [Gender] = [male, female, other("other")]
+    static var allCases: [Gender] = [male, female, other("Other")]
     case male
     case female
     case other(String)
@@ -16,9 +16,9 @@ enum Gender: CaseIterable, Hashable{
     var value: String {
         switch self {
         case .male:
-            return "male"
+            return "Male"
         case .female:
-            return "female"
+            return "Female"
         case .other(let string):
             return string
         }

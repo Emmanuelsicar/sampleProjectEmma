@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 
 enum PersonType: String, CaseIterable, Decodable{
-    case student
-    case teacher
-    case parent
-    case principal
-    case averageJoe
+    case student = "Student"
+    case teacher = "Teacher"
+    case parent = "Parent"
+    case principal = "Principal"
+    case averageJoe = "AverageJoe"
     
     var icon: Image {
         switch self {
@@ -27,6 +27,21 @@ enum PersonType: String, CaseIterable, Decodable{
             return Image(systemName: "pencil.tip.crop.circle")
         case .averageJoe:
             return Image(systemName: "person")
+        }
+    }
+    
+    var valueName: String{
+        switch self {
+        case .student:
+            return "Student"
+        case .teacher:
+            return "Teacher"
+        case .parent:
+            return "Parent"
+        case .principal:
+            return "Principal"
+        case .averageJoe:
+            return "AverageJoe"
         }
     }
 }

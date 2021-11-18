@@ -15,8 +15,6 @@ class PeopleFormViewModel: ObservableObject {
     
     let provider: PeopleProvider = PeopleProvider.shared
     
-    let repository: Repository = Repository.shared
-    
     @Published var activateMessage: Bool = false
     
     @Published var name: String = ""
@@ -53,6 +51,7 @@ class PeopleFormViewModel: ObservableObject {
                 }
             } receiveValue: { (value) in
                 self.message = value
+                print(value)
             }
             .store(in: &cancelables)
     }
@@ -60,13 +59,7 @@ class PeopleFormViewModel: ObservableObject {
     func addPeople(type: PersonType, name: String, age: Int, gender: Gender){
         switch type {
         case .averageJoe:
-            repository.uploadPerson(name, age, gender) {
-                self.alertType = .succesful
-                self.activateMessage = true
-            } onFail: {
-                self.alertType = .failedRegister
-                self.activateMessage = true
-            }
+                actualizarListaPublisher(RegularPerson(name: name, age: age, gender: gender), type)
         case .student:
                   actualizarListaPublisher(Student(name: name,age: age, gender: gender), type)
         case .teacher:
@@ -97,14 +90,14 @@ class PeopleFormViewModel: ObservableObject {
                 if  name != "" && age != ""{
                     if let opcional = Int(age){
                         
-                        if otherText != "" && gender == .other("other"){
+                        if otherText != "" && gender == .other("Other"){
                             gender = .other(otherText)
                             }
                            addPeople(type: type, name: name, age: Int(opcional), gender: gender)
                         
                         if gender == .other(otherText){
                             otherText = ""
-                            gender = .other("other")
+                            gender = .other("Other")
                         }
                        
                     } else {

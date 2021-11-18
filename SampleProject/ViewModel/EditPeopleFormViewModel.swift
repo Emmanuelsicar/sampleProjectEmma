@@ -43,8 +43,8 @@ class EditPeopleFormViewModel: ObservableObject {
         }
         
         if let opcionalGenero = person.gender{
-            if opcionalGenero != .female && opcionalGenero != .male && opcionalGenero != .other("other"){
-                self.gender = .other("other")
+            if opcionalGenero != .female && opcionalGenero != .male && opcionalGenero != .other("Other"){
+                self.gender = .other("Other")
                 self.otherText = opcionalGenero.value
             }else{
                 self.gender = opcionalGenero
@@ -83,14 +83,14 @@ class EditPeopleFormViewModel: ObservableObject {
         if  name != "" && age != ""{
             if let opcional = Int(age){
                 
-                if otherText != "" && gender == .other("other"){
+                if otherText != "" && gender == .other("Other"){
                     gender = .other(otherText)
                     }
                 editPeople(person: person, name: name, age: opcional, gender: gender)
                 
                 if gender == .other(otherText){
                     otherText = ""
-                    gender = .other("other")
+                    gender = .other("Other")
                 }
                
             } else {

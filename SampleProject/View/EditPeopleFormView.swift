@@ -14,11 +14,15 @@ struct EditPeopleFormView: View {
     
     var body: some View {
         Form{
-            HStack {
-                Text("Edit \(viewModel.person.name)")
-                    .bold()
+            Section(header: Text("Edit \(viewModel.person.pType.valueName)")){
+                HStack {
+                    Text("Edit \(viewModel.person.name)")
+                        .bold()
+                }
             }
-            .padding()
+         
+            
+            Section(header: Text("Form")){
                 VStack {
                     Text("Full Name")
                     Divider()
@@ -27,7 +31,6 @@ struct EditPeopleFormView: View {
                     Divider()
                     TextField("Write the age", text: $viewModel.age)
                 }
-                .padding()
                 VStack {
                     Text("Gender")
                     Divider()
@@ -36,27 +39,30 @@ struct EditPeopleFormView: View {
                             Text("\(order.value)")
                         }
                     }
-                    if viewModel.gender == .other("other"){
+                    if viewModel.gender == .other("Other"){
                         VStack {
                             Text("If you wish, specify your gender")
                                 .italic()
                             TextField("Write your gender", text: $viewModel.otherText)
                         }
                     }
-        }
-                .padding()
-            Button {
-                viewModel.edite()
-            } label: {
-                HStack {
-                    Text("Edit \(viewModel.person.pType.rawValue)")
-                    Spacer()
-                    viewModel.person.pType.icon
                 }
             }
-            .alert(isPresented: $viewModel.activateMessage, content: {
-                viewModel.generateAlert(viewModel.alertType, presentationMode)
-            })
+     
+            Section(header: Text("Submit Edit")){
+                Button {
+                    viewModel.edite()
+                } label: {
+                    HStack {
+                        Text("Edit \(viewModel.person.pType.rawValue)")
+                        Spacer()
+                        viewModel.person.pType.icon
+                    }
+                }
+                .alert(isPresented: $viewModel.activateMessage, content: {
+                    viewModel.generateAlert(viewModel.alertType, presentationMode)
+                })
+            }
     }
   }
 }

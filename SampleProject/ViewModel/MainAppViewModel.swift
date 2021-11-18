@@ -13,8 +13,6 @@ class MainAppViewModel: ObservableObject {
     
     let provider: PeopleProvider = PeopleProvider.shared
     
-    let repository: Repository = Repository.shared
-    
     @Published var peopleList: [Person] = []
     
     @Published var filterText: String = ""
@@ -30,8 +28,7 @@ class MainAppViewModel: ObservableObject {
     var alertType: AlertMessage = .unknowGender
     
     private var cancelables: Set<AnyCancellable> = []
-    
-    
+     
     func updateList() {
         provider.getPeoplePublisher(filterText, selectedOrder, selectedFactor)
             .sink { (completion) in
@@ -41,26 +38,13 @@ class MainAppViewModel: ObservableObject {
                     print("La cagaste")
                     break
                 case .finished:
-                    //print("Datos bien recolectados")
+                  
                     break
                 }
             } receiveValue: { (value) in
                 self.peopleList = value
             }
             .store(in: &cancelables)
-    }
-    
-    func fillRandomly() {
-        var randomPeople: [Person] = []
-        for i in provider.people.count..<Int.random(in: (provider.people.count + 1)...(provider.people.count + 8)) {
-            let randomInt = Int.random(in: 1...8)
-            var temp: Person = RegularPerson(name: "Fill RandomLy \(i)")
-            temp.age = i + 10 * randomInt
-            temp.gender = ((randomInt % 2) > 0 ? .male : .female)
-            randomPeople.append(temp)
-        }
-        provider.people.append(contentsOf: randomPeople)
-        updateList()
     }
     
     func deletePerson(at offsets: IndexSet) {
@@ -76,23 +60,6 @@ class MainAppViewModel: ObservableObject {
     func deleteAllPerson() {
         provider.removeAllPerson()
         updateList()
-    }
-    
-    func addDownloadPerson(){
-        repository.downloadPerson { [unowned self](value1, value2) in
-            if value1{
-                value2.forEach { (DecodedPerson) in
-                    self.provider.people.append(DecodedPerson.getPerson())
-                }
-            }
-            self.alertType = .succesful
-            self.alertMessage = true
-            self.updateList()
-        } onFail: {
-            self.alertType = .failedRegister
-            self.alertMessage = true
-        }
-        
     }
     
     deinit {
@@ -120,43 +87,5 @@ class MainAppViewModel: ObservableObject {
         
         return atention
     }
-    
-    
-    
-    func downloadPerson() {
-        guard let url = URL(string: "https://urlrequest.000webhostapp.com/people.json") else {return}
-        URLSession.shared
-            .dataTaskPublisher(for: url)
-            .tryMap{ element -> Data in
-                guard let httpResponse = element.response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
-                    throw URLError(.badServerResponse)
-                }
-                return element.data
-            }
-            .decode(type: [DecodedPerson].self, decoder: JSONDecoder())
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: {
-                print("Received completion: \($0) ")
-                switch $0{
-                case .failure(let error):
-                    print(error)
-//                    self.message = error.localizedDescription
-//                    self.alertType = .failedRegister
-//                    self.alertMessage = true
-                    break
-                case .finished:
-//                    self.alertType = .succesful
-//                    self.alertMessage = true
-//                    self.updateList()
-                    break
-                }
-            }, receiveValue: { (decodedPerson) in
-                decodedPerson.forEach{
-                    print($0)
-                    self.provider.people.append($0.getPerson())
-                }
-                
-            })
-            .store(in: &cancelables)
-    }
+
 }

@@ -53,7 +53,6 @@
 		0A86F8FB271F7120009F81C0 /* Principal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Principal.swift; sourceTree = "<group>"; };
 		0AB46B15273D9BE80050AD9C /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		0AD50A0B27299ED1006A085E /* PeopleFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleFormView.swift; sourceTree = "<group>"; };
-		0AFD29D92731C08F001CA91C /* RecycleCode.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RecycleCode.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0AFD29DF2732079E001CA91C /* EditPeopleFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPeopleFormView.swift; sourceTree = "<group>"; };
 		1B7D26A0271DBCB100044422 /* SampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7D26A3271DBCB100044422 /* SampleProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProjectApp.swift; sourceTree = "<group>"; };
@@ -102,14 +101,6 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		0AFD29D82731C06C001CA91C /* Dump */ = {
-			isa = PBXGroup;
-			children = (
-				0AFD29D92731C08F001CA91C /* RecycleCode.playground */,
-			);
-			path = Dump;
-			sourceTree = "<group>";
-		};
 		1B7D2697271DBCB100044422 = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				0AB46B14273D9BC80050AD9C /* Repository */,
-				0AFD29D82731C06C001CA91C /* Dump */,
 				1B7D26CB271E153400044422 /* Protocol */,
 				1B7D26CA271E150E00044422 /* Enums */,
 				1B7D26C9271E14FE00044422 /* Models */,

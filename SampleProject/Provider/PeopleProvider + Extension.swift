@@ -11,23 +11,29 @@ import Combine
 extension PeopleProvider {
     
     func addPerson(_ person: Person) -> AnyPublisher<String, Error> {
-       
         var resultPublisher: AnyPublisher<String, Error>
         
-        let numeroAleatorio = Int.random(in: 1..<15)
-
-        resultPublisher = Fail(error: ErrorValidation.errorConnection)
-                .eraseToAnyPublisher()
+        resultPublisher = Just("Nothing")
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
         
-        if numeroAleatorio <= 8 {
-            if !self.people.contains(where: {$0.id == person.id}){
+        if !self.people.contains(where: {$0.id == person.id}){
+            self.repository.postPerson(person) {
                 self.people.append(person)
                 resultPublisher = Just("Succes")
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
                 
-                print("Registro exitoso tiempo: \(numeroAleatorio)")
+                print("Registro exitoso")
+                
+            } onFail: {
+                resultPublisher = Fail(error: ErrorValidation.errorConnection)
+                        .eraseToAnyPublisher()
             }
+        }else{
+            resultPublisher = Just("Repeat")
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
         }
 
         return resultPublisher
@@ -35,25 +41,27 @@ extension PeopleProvider {
     
     
     func removePerson(at offsets: IndexSet) {
+        if let opcional = offsets.first{
+            print(people[opcional])
+            repository.deletePerson(id: people[opcional].id)
+        }
         people.remove(atOffsets: offsets)
     }
     
     func editPerson(_ person: Person) -> AnyPublisher<String, Error> {
         var resultPublisher: AnyPublisher<String, Error>
         
-        let numeroAleatorio = Int.random(in: 1..<15)
-        resultPublisher = Fail(error: ErrorValidation.errorConnection)
+        resultPublisher = Just("Nothing")
+                .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         
-        if numeroAleatorio <= 8 {
-            if let index = people.firstIndex(where: {$0.id == person.id}) {
-                resultPublisher = Just("Succes")
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-                
-                print("Edicion exitosa tiempo: \(numeroAleatorio)")
-                people[index] = person
-            }
+        if let index = people.firstIndex(where: {$0.id == person.id}) {
+            resultPublisher = Just("Succes")
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+            repository.editPerson(person: person)
+            print("Edicion exitosa")
+            people[index] = person
         }
 
         return resultPublisher

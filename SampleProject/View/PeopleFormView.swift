@@ -14,11 +14,14 @@ struct PeopleFormView: View {
 
     var body: some View {
         Form {
-            HStack {
-                Text("Register \(viewModel.type.rawValue) \(viewModel.selectedEmoji(viewModel.type))")
-                    .bold()
+            Section(header: Text("Register")){
+                HStack {
+                    Text("Register \(viewModel.type.rawValue) \(viewModel.selectedEmoji(viewModel.type))")
+                        .bold()
+                }
             }
-            .padding()
+            
+            Section(header: Text("Form Info")){
                 VStack {
                     Text("Full Name")
                     Divider()
@@ -37,7 +40,7 @@ struct PeopleFormView: View {
                             Text("\(order.value)")
                         }
                     }
-                    if viewModel.gender == .other("other"){
+                    if viewModel.gender == .other("Other"){
                         VStack {
                             Text("If you wish, specify your gender")
                                 .italic()
@@ -46,20 +49,22 @@ struct PeopleFormView: View {
                     }
                 }
                 .padding()
-
-            Button {
-                viewModel.add()
-            } label: {
-                HStack {
-                    Text("Add \(viewModel.type.rawValue)")
-                    Spacer()
-                    viewModel.type.icon
-                }
-                .alert(isPresented: $viewModel.activateMessage, content: {
-                    viewModel.generateAlert(viewModel.alertType, presentationMode)
-                })
             }
-           
+    
+            Section(header: Text("Submit")){
+                Button {
+                    viewModel.add()
+                } label: {
+                    HStack {
+                        Text("Add \(viewModel.type.valueName)")
+                        Spacer()
+                        viewModel.type.icon
+                    }
+                    .alert(isPresented: $viewModel.activateMessage, content: {
+                        viewModel.generateAlert(viewModel.alertType, presentationMode)
+                    })
+                }
+            }
         }
         
     }

@@ -17,41 +17,16 @@ struct MainAppView: View {
             Form {
                 Section(header: Text("Add Person")) {
                     ForEach(PersonType.allCases, id: \.self) { pType in
-                        if pType != .averageJoe{
-                            NavigationLink(destination: PeopleFormView(viewModel: PeopleFormViewModel(pType))){
-                                HStack {
-                                    Text("\(pType.rawValue)")
-                                    Spacer()
-                                    pType.icon
-                                }
+                        NavigationLink(destination: PeopleFormView(viewModel: PeopleFormViewModel(pType))){
+                            HStack {
+                                Text("\(pType.valueName)")
+                                Spacer()
+                                pType.icon
                             }
-                        } else{
-                         
-                            NavigationLink(destination: PeopleFormView(viewModel: PeopleFormViewModel(pType))){
-                                HStack {
-                                    Text("Upload Average Person")
-                                    Spacer()
-                                    pType.icon
-                                }
-                            }
-                            
-                            Button {
-                                viewModel.addDownloadPerson()
-                            } label: {
-                                HStack {
-                                    Text("\(pType.rawValue)")
-                                    Spacer()
-                                    pType.icon
-                                }
-                                .alert(isPresented: $viewModel.alertMessage, content: {
-                                    viewModel.generateAlert(viewModel.alertType)
-                                })
-                            }
-                            
                         }
-                        
                     }
                 }
+                
                 
                 Section(header: Text("Filter")) {
                     HStack {
@@ -79,7 +54,6 @@ struct MainAppView: View {
                         }
                     }
                 }
-                
                     
                 Section(header: Text("People")) {
                     Button {
@@ -94,14 +68,9 @@ struct MainAppView: View {
                     })
                     
                     ForEach(viewModel.peopleList, id: \.id) { person in
-                
-                        if person.pType != PersonType.averageJoe {
-                            NavigationLink(destination:  EditPeopleFormView(viewModel: EditPeopleFormViewModel(person))){
-                                                           PersonRowView(person: person)
-                             }
-                        } else {
-                            PersonRowView(person: person)
-                        }
+                        NavigationLink(destination:  EditPeopleFormView(viewModel: EditPeopleFormViewModel(person))){
+                                                       PersonRowView(person: person)
+                         }
                     }
                     .onDelete { indexSet in
                         viewModel.deletePerson(at: indexSet)
@@ -115,10 +84,14 @@ struct MainAppView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.fillRandomly()
+                        viewModel.provider.fillRandomly()
+                        viewModel.updateList()
+          
                     } label: {
                         Image(systemName: "lasso.sparkles")
+                            
                     }
+                    
                     EditButton()
                 }
             }
